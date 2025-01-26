@@ -16,10 +16,10 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle("/app/", http.StripPrefix("/app", cfg.middlewareMetricsInc(fileSever)))
 
-	mux.HandleFunc("/metrics", cfg.handleMetrics)
-	mux.HandleFunc("/reset", cfg.handleReset)
+	mux.HandleFunc("GET /metrics", cfg.handleMetrics)
+	mux.HandleFunc("POST /reset", cfg.handleReset)
 
-	mux.HandleFunc("/healthz", handleHealthz)
+	mux.HandleFunc("GET /healthz", handleHealthz)
 
 	server := &http.Server{Handler: mux, Addr: ":8080"}
 	server.ListenAndServe()
