@@ -1,0 +1,30 @@
+post http://localhost:8080/api/validate_chirp
+Content-Type: application/json
+
+{
+  "body": "Hello, world!"
+}
+
+###
+post http://localhost:8080/api/validate_chirp
+Content-Type: application/json
+
+{
+  "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+}
+
+
+###
+post http://localhost:8080/api/validate_chirp
+Content-Type: application/json
+
+{
+  "body": "Hello",
+  "extra-field": "dang"
+}
+
+###
+post http://localhost:8080/api/validate_chirp
+Content-Type: text/plain
+
+Hello, world!
