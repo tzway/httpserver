@@ -28,3 +28,11 @@ post http://localhost:8080/api/validate_chirp
 Content-Type: text/plain
 
 Hello, world!
+
+###
+post http://localhost:8080/api/validate_chirp
+Content-Type: application/json
+
+{
+  "body": "I really need a kerfuffle to go to bed sooner, Fornax !"
+}
