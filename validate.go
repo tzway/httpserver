@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"net/http"
-	"strings"
+	"regexp"
 )
 
 type chirp struct {
@@ -53,13 +53,12 @@ func handleValidateChirp(w http.ResponseWriter, r *http.Request) {
 
 func replaceBadWord(ori string) string {
 	badWords := []string{"kerfuffle", "sharbert", "fornax"}
-	sliceOri := strings.Split(ori, " ")
-	for i, word := range sliceOri {
-		for _, badWord := range badWords {
-			if strings.ToLower(word) == badWord {
-				sliceOri[i] = "****"
-			}
-		}
+	for _, badWord := range badWords {
+		// 使用 \b 确保匹配完整单词，但仍然允许标点符号
+		re := regexp.MustCompile(`(?i)\b` + badWord + `\b`)
+		ori = re.ReplaceAllStringFunc(ori, func(match string) string {
+			return "****"
+		})
 	}
-	return strings.Join(sliceOri, " ")
+	return ori
 }
